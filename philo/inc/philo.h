@@ -6,7 +6,7 @@
 /*   By: seozkan <seozkan@student.42kocaeli.com.tr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 18:23:47 by lorbke            #+#    #+#             */
-/*   Updated: 2023/04/16 15:58:50 by seozkan          ###   ########.fr       */
+/*   Updated: 2023/04/16 16:10:53 by seozkan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,5 +87,6 @@ t_ms					get_time(void);
 void					sniper_usleep(t_us time);
 
 void					*waitress_routine(void *arg);
+void					clean_up(pthread_t *waiter, t_philo *philos);
 
 #endif

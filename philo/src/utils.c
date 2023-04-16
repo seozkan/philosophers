@@ -1,16 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse.c                                            :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seozkan <seozkan@student.42kocaeli.com.tr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 15:05:29 by lorbke            #+#    #+#             */
-/*   Updated: 2023/04/16 15:58:50 by seozkan          ###   ########.fr       */
+/*   Updated: 2023/04/16 16:11:44 by seozkan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/philo_bonus.h"
+
+#include "../inc/philo.h"
+
+void	clean_up(pthread_t *waiter, t_philo *philos)
+{
+	int	i;
+
+	pthread_join(*waiter, NULL);
+	i = 0;
+	while (i < philos[0].info->philo_count)
+	{
+		pthread_join(philos[i].thread, NULL);
+		i++;
+	}
+	while (--i >= 0)
+	{
+		pthread_mutex_destroy(&philos[i].fork_r);
+		pthread_mutex_destroy(&philos[i].status_mutex);
+		pthread_mutex_destroy(&philos[i].eat_mutex);
+		pthread_mutex_destroy(&philos[i].fed_mutex);
+	}
+	pthread_mutex_destroy(&philos[0].info->print_mutex);
+	free(philos);
+}
 
 int	ft_atoi(const char *str)
 {
@@ -25,30 +48,6 @@ int	ft_atoi(const char *str)
 		i++;
 	}
 	return (num);
-}
-
-int	init_info(t_info *info, int argc, char **argv)
-{
-	info->philo_count = ft_atoi(argv[1]);
-	info->starve_time = ft_atoi(argv[2]);
-	info->eat_time = ft_atoi(argv[3]) * 1000;
-	info->sleep_time = ft_atoi(argv[4]) * 1000;
-	info->meal_count = -1;
-	if (argc == 6)
-		info->meal_count = ft_atoi(argv[5]);
-	if (errno == ERANGE)
-		return (1);
-	sem_unlink(FORKS_SEM);
-	info->forks = sem_open(FORKS_SEM, O_CREAT, SEM_PERMS, info->philo_count);
-	sem_unlink(PRINT_SEM);
-	info->print_sem = sem_open(PRINT_SEM, O_CREAT, SEM_PERMS, 1);
-	sem_unlink(STATUS_SEM);
-	info->func_action[0] = &philo_take_forks;
-	info->func_action[1] = &philo_eat;
-	info->func_action[2] = &philo_sleep;
-	info->func_action[3] = &philo_think;
-	info->start_time = get_time();
-	return (0);
 }
 
 int	check_args(int argc, char **argv)
@@ -77,4 +76,21 @@ int	check_args(int argc, char **argv)
 		j++;
 	}
 	return (0);
+}
+
+t_ms	get_time(void)
+{
+	struct timeval	time;
+
+	gettimeofday(&time, NULL);
+	return ((time.tv_usec / 1000 + time.tv_sec * 1000));
+}
+
+void	sniper_usleep(t_us time)
+{
+	t_ms	wake_up;
+
+	wake_up = get_time() + time / 1000;
+	while (get_time() < wake_up)
+		usleep(200);
 }

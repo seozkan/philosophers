@@ -6,33 +6,11 @@
 /*   By: seozkan <seozkan@student.42kocaeli.com.tr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 18:19:44 by lorbke            #+#    #+#             */
-/*   Updated: 2023/04/16 15:58:50 by seozkan          ###   ########.fr       */
+/*   Updated: 2023/04/16 16:10:36 by seozkan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/philo.h"
-
-static void	clean_up(pthread_t *waiter, t_philo *philos)
-{
-	int	i;
-
-	pthread_join(*waiter, NULL);
-	i = 0;
-	while (i < philos[0].info->philo_count)
-	{
-		pthread_join(philos[i].thread, NULL);
-		i++;
-	}
-	while (--i >= 0)
-	{
-		pthread_mutex_destroy(&philos[i].fork_r);
-		pthread_mutex_destroy(&philos[i].status_mutex);
-		pthread_mutex_destroy(&philos[i].eat_mutex);
-		pthread_mutex_destroy(&philos[i].fed_mutex);
-	}
-	pthread_mutex_destroy(&philos[0].info->print_mutex);
-	free(philos);
-}
 
 static int	create_philos(t_philo *philos)
 {
@@ -71,6 +49,23 @@ static void	init_philos(t_info *info, t_philo *philos)
 		philos[i].fork_l = &philos[(i + 1) % info->philo_count].fork_r;
 		i++;
 	}
+}
+
+void	init_info(t_info *info, int argc, char **argv)
+{
+	info->philo_count = ft_atoi(argv[1]);
+	info->starve_time = ft_atoi(argv[2]);
+	info->eat_time = ft_atoi(argv[3]) * 1000;
+	info->sleep_time = ft_atoi(argv[4]) * 1000;
+	info->meal_count = -1;
+	if (argc == 6)
+		info->meal_count = ft_atoi(argv[5]);
+	pthread_mutex_init(&info->print_mutex, NULL);
+	info->func_action[0] = &philo_take_forks;
+	info->func_action[1] = &philo_eat;
+	info->func_action[2] = &philo_sleep;
+	info->func_action[3] = &philo_think;
+	info->start_time = get_time();
 }
 
 static void	forever_alone(t_info *info)

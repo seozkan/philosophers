@@ -6,7 +6,7 @@
 /*   By: seozkan <seozkan@student.42kocaeli.com.tr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 18:23:47 by lorbke            #+#    #+#             */
-/*   Updated: 2023/04/16 15:58:50 by seozkan          ###   ########.fr       */
+/*   Updated: 2023/04/16 16:13:49 by seozkan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ int						check_args(int argc, char **argv);
 
 int						init_info(t_info *info, int argc, char **argv);
 void					sniper_usleep(t_ms time);
+void					clean_up(t_philo *philos);
 
 void					*waitress_routine(void *arg);
 #endif

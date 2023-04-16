@@ -6,7 +6,7 @@
 #    By: seozkan <seozkan@student.42kocaeli.com.tr> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/04 15:11:52 by lorbke            #+#    #+#              #
-#    Updated: 2023/04/16 16:03:10 by seozkan          ###   ########.fr        #
+#    Updated: 2023/04/16 16:11:57 by seozkan          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ OBJ_PATH = obj
 SRC_PATH = src
 
 # src and obj files macros
-SRC = main.c parse.c philo_utils.c philo.c time.c waitress.c
+SRC = main.c utils.c philo_utils.c philo.c waitress.c
 OBJ = $(addprefix $(OBJ_PATH)/, $(addsuffix .o, $(notdir $(basename $(SRC)))))
 
 # default rule
