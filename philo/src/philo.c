@@ -6,7 +6,7 @@
 /*   By: seozkan <seozkan@student.42kocaeli.com.tr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 16:40:17 by seozkan           #+#    #+#             */
-/*   Updated: 2023/04/16 19:50:41 by seozkan          ###   ########.fr       */
+/*   Updated: 2023/04/16 20:28:40 by seozkan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ void	print_action(t_philo *philo, char *str)
 {
 	pthread_mutex_lock(&philo->info->print_mutex);
 	if (!check_death(philo))
-		printf("\033[0;36m%lld %d %s\n\033[0m", get_time()
-			- philo->info->start_time, philo->id, str);
+		printf("%s%lld %d %s\n%s", CYAN, get_time() - philo->info->start_time,
+			philo->id, str, END);
 	pthread_mutex_unlock(&philo->info->print_mutex);
 }
 

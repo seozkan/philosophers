@@ -6,7 +6,7 @@
 /*   By: seozkan <seozkan@student.42kocaeli.com.tr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 16:26:58 by seozkan           #+#    #+#             */
-/*   Updated: 2023/04/16 18:26:16 by seozkan          ###   ########.fr       */
+/*   Updated: 2023/04/16 20:28:59 by seozkan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@
 # define SLEEP "is sleeping"
 # define FORK "has taken a fork"
 # define DIE "died"
+# define CYAN "\033[33;36;1m"
+# define END "\033[0;0m"
 
 /*TYPEDEFS*/
 typedef struct s_info	t_info;

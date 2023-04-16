@@ -6,7 +6,7 @@
 /*   By: seozkan <seozkan@student.42kocaeli.com.tr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 16:41:03 by seozkan           #+#    #+#             */
-/*   Updated: 2023/04/16 18:30:55 by seozkan          ###   ########.fr       */
+/*   Updated: 2023/04/16 20:28:53 by seozkan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@
 # define FORKS_SEM "forks"
 # define STATUS_SEM "status_sem"
 # define SEM_PERMS 0600
+# define CYAN "\033[33;36;1m"
+# define END "\033[0;0m"
 
 /*TYPEDEFS*/
 typedef struct s_info	t_info;
