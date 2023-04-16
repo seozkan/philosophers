@@ -6,11 +6,11 @@
 /*   By: seozkan <seozkan@student.42kocaeli.com.tr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 15:50:53 by lorbke            #+#    #+#             */
-/*   Updated: 2023/04/16 15:44:19 by seozkan          ###   ########.fr       */
+/*   Updated: 2023/04/16 15:58:50 by seozkan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/philo.h"
+#include "../inc/philo.h"
 
 void	philo_take_forks(t_philo *philo)
 {

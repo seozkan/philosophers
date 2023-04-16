@@ -6,12 +6,12 @@
 /*   By: seozkan <seozkan@student.42kocaeli.com.tr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 15:05:29 by lorbke            #+#    #+#             */
-/*   Updated: 2023/04/16 15:45:36 by seozkan          ###   ########.fr       */
+/*   Updated: 2023/04/16 15:58:50 by seozkan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
-#include "../includes/philo.h"
+#include "../inc/philo.h"
 
 int	ft_atoi(const char *str)
 {

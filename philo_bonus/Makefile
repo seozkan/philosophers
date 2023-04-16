@@ -6,7 +6,7 @@
 #    By: seozkan <seozkan@student.42kocaeli.com.tr> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/04 15:11:52 by lorbke            #+#    #+#              #
-#    Updated: 2023/04/16 15:51:10 by seozkan          ###   ########.fr        #
+#    Updated: 2023/04/16 16:03:15 by seozkan          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,11 +16,11 @@ NAME = philo_bonus
 # command macros
 CC = gcc
 RM = rm -f
-ADD_FLAGS = -pthread -fsanitize=thread
+ADD_FLAGS = -pthread #-fsanitize=thread
 FLAGS = -Wall -Wextra -Werror
 
 # path macros
-INC_PATH = includes
+INC_PATH = inc
 OBJ_PATH = obj
 SRC_PATH = src
 LIB_PATH = $(SRC_PATH)/ft_lib
@@ -35,10 +35,13 @@ default: makedir all
 # file targets
 ${NAME}: ${OBJ}
 	${CC} ${FLAGS} ${ADD_FLAGS} ${OBJ} -o ${NAME}
-	@echo "make: philo_bonus success!"
+	@echo "make: philo success!"
+	@sleep 1
+	@make clean
+	@clear
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
-	${CC} ${FLAGS} ${ADD_FLAGS} -I$(INC_PATH) -c $< -o $@
+	${CC} ${FLAGS} ${ADD_FLAGS} -I $(INC_PATH) -c $< -o $@
 
 # phony targets
 all: ${NAME}

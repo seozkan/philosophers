@@ -1,29 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.h                                            :+:      :+:    :+:   */
+/*   philo_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seozkan <seozkan@student.42kocaeli.com.tr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 18:23:47 by lorbke            #+#    #+#             */
-/*   Updated: 2023/04/16 15:36:53 by seozkan          ###   ########.fr       */
+/*   Updated: 2023/04/16 15:58:50 by seozkan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_H
-# define PHILO_H
+#ifndef PHILO_BONUS_H
+# define PHILO_BONUS_H
 
-/* INCLUDES */
+/* inc */
 # include <errno.h>
+# include <fcntl.h> // sem_open flags
 # include <limits.h>
-# include <pthread.h> // pthread_t, pthread_mutex_t
-# include <stdbool.h> // bool
-# include <stddef.h>  // size_t
-# include <stddef.h>  // NULL
-# include <stdio.h>   // printf
+# include <pthread.h>   // pthread_t, pthread_mutex_t
+# include <semaphore.h> // sem_t
+# include <signal.h>    // terminate signal
+# include <stdbool.h>   // bool
+# include <stddef.h>    // size_t
+# include <stdio.h>     // printf
 # include <stdlib.h>
 # include <sys/time.h>
-# include <unistd.h> // write// malloc
+# include <sys/wait.h> // waitpid
+# include <unistd.h>   // write
 
 typedef long long t_ms; // milliseconds
 typedef long long t_us; // microseconds
@@ -35,6 +38,12 @@ typedef long long t_us; // microseconds
 # define SLEEP "is sleeping"
 # define FORK "has taken a fork"
 # define DIE "died"
+# define FED_SEM "fed_sem"
+# define EAT_SEM "eat_sem"
+# define PRINT_SEM "print_sem"
+# define FORKS_SEM "forks"
+# define STATUS_SEM "status_sem"
+# define SEM_PERMS 0600
 
 /* TYPEDEFS */
 typedef struct s_info	t_info;
@@ -47,14 +56,10 @@ struct					s_philo
 	t_info				*info;
 	int					num;
 	bool				fed;
-	bool				status;
 	t_ms				last_meal;
-	pthread_mutex_t		fork_r;
-	pthread_mutex_t		*fork_l;
-	pthread_mutex_t		status_mutex;
-	pthread_mutex_t		eat_mutex;
-	pthread_mutex_t		fed_mutex;
-	pthread_t			thread;
+	sem_t				*eat_sem;
+	sem_t				*fed_sem;
+	pid_t				pid;
 };
 
 struct					s_info
@@ -65,7 +70,8 @@ struct					s_info
 	t_ms				sleep_time;
 	int					meal_count;
 	t_ms				start_time;
-	pthread_mutex_t		print_mutex;
+	sem_t				*forks;
+	sem_t				*print_sem;
 	t_func_action		func_action[ACTION_COUNT];
 };
 
@@ -75,17 +81,15 @@ void					philo_eat(t_philo *philo);
 void					philo_sleep(t_philo *philo);
 void					philo_think(t_philo *philo);
 void					print_action(t_philo *philo, char *str);
-void					*philo_routine(void *arg);
+int						philo_start(t_philo *philo);
 
-/* LIBFT*/
-
-int						check_args(int argc, char **argv);
-void					init_info(t_info *info, int argc, char **argv);
 int						ft_atoi(const char *str);
 
 t_ms					get_time(void);
-void					sniper_usleep(t_us time);
+int						check_args(int argc, char **argv);
+
+int						init_info(t_info *info, int argc, char **argv);
+void					sniper_usleep(t_ms time);
 
 void					*waitress_routine(void *arg);
-
 #endif
