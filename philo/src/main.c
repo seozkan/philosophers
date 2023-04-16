@@ -6,7 +6,7 @@
 /*   By: seozkan <seozkan@student.42kocaeli.com.tr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 18:19:44 by lorbke            #+#    #+#             */
-/*   Updated: 2023/04/16 15:37:03 by seozkan          ###   ########.fr       */
+/*   Updated: 2023/04/16 15:43:11 by seozkan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void	clean_up(pthread_t *waiter, t_philo *philos)
 	free(philos);
 }
 
-int	create_philos(t_philo *philos)
+static int	create_philos(t_philo *philos)
 {
 	int			i;
 	int			error;

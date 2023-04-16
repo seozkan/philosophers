@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+        */
+/*   By: seozkan <seozkan@student.42kocaeli.com.tr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 18:23:47 by lorbke            #+#    #+#             */
-/*   Updated: 2023/01/10 01:46:26 by lorbke           ###   ########.fr       */
+/*   Updated: 2023/04/16 15:52:26 by seozkan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,22 @@
 # define PHILO_BONUS_H
 
 /* INCLUDES */
-# include "philo_time.h" // t_ms
-# include <stddef.h> // size_t
-# include <pthread.h> // pthread_t, pthread_mutex_t
-# include <stdbool.h> // bool
+# include <errno.h>
+# include <fcntl.h> // sem_open flags
+# include <limits.h>
+# include <pthread.h>   // pthread_t, pthread_mutex_t
 # include <semaphore.h> // sem_t
-# include <unistd.h> // write
+# include <signal.h>    // terminate signal
+# include <stdbool.h>   // bool
+# include <stddef.h>    // size_t
+# include <stdio.h>     // printf
+# include <stdlib.h>
+# include <sys/time.h>
+# include <sys/wait.h> // waitpid
+# include <unistd.h>   // write
+
+typedef long long t_ms; // milliseconds
+typedef long long t_us; // microseconds
 
 /* DEFINES */
 # define ACTION_COUNT 4
@@ -41,36 +51,45 @@ typedef struct s_philo	t_philo;
 typedef void			(*t_func_action)(t_philo *philo);
 
 /* STRUCTS */
-struct s_philo
+struct					s_philo
 {
-	t_info			*info;
-	int				num;
-	bool			fed;
-	t_ms			last_meal;
-	sem_t			*eat_sem;
-	sem_t			*fed_sem;
-	pid_t			pid;
+	t_info				*info;
+	int					num;
+	bool				fed;
+	t_ms				last_meal;
+	sem_t				*eat_sem;
+	sem_t				*fed_sem;
+	pid_t				pid;
 };
 
-struct s_info
+struct					s_info
 {
-	int				philo_count;
-	t_ms			starve_time;
-	t_ms			eat_time;
-	t_ms			sleep_time;
-	int				meal_count;
-	t_ms			start_time;
-	sem_t			*forks;
-	sem_t			*print_sem;
-	t_func_action	func_action[ACTION_COUNT];
+	int					philo_count;
+	t_ms				starve_time;
+	t_ms				eat_time;
+	t_ms				sleep_time;
+	int					meal_count;
+	t_ms				start_time;
+	sem_t				*forks;
+	sem_t				*print_sem;
+	t_func_action		func_action[ACTION_COUNT];
 };
 
 /* PROTOTYPES */
-void	philo_take_forks(t_philo *philo);
-void	philo_eat(t_philo *philo);
-void	philo_sleep(t_philo *philo);
-void	philo_think(t_philo *philo);
-void	print_action(t_philo *philo, char *str);
-int		philo_start(t_philo *philo);
+void					philo_take_forks(t_philo *philo);
+void					philo_eat(t_philo *philo);
+void					philo_sleep(t_philo *philo);
+void					philo_think(t_philo *philo);
+void					print_action(t_philo *philo, char *str);
+int						philo_start(t_philo *philo);
 
+int						ft_atoi(const char *str);
+
+t_ms					get_time(void);
+int						check_args(int argc, char **argv);
+
+int						init_info(t_info *info, int argc, char **argv);
+void					sniper_usleep(t_ms time);
+
+void					*waitress_routine(void *arg);
 #endif

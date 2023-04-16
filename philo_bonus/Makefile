@@ -6,7 +6,7 @@
 #    By: seozkan <seozkan@student.42kocaeli.com.tr> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/04 15:11:52 by lorbke            #+#    #+#              #
-#    Updated: 2023/04/16 14:42:16 by seozkan          ###   ########.fr        #
+#    Updated: 2023/04/16 15:51:10 by seozkan          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,9 +26,7 @@ SRC_PATH = src
 LIB_PATH = $(SRC_PATH)/ft_lib
 
 # src and obj files macros
-SRC = ft_isalnum.c ft_isalpha.c ft_isdigit.c ft_isspace.c ft_safeadd.c \
-ft_safemult.c ft_strisdigit.c ft_strtoi.c main.c parse.c philo_utils.c \
-philo.c time.c waitress.c
+SRC = main.c parse.c philo_utils.c philo.c time.c waitress.c
 OBJ = $(addprefix $(OBJ_PATH)/, $(addsuffix .o, $(notdir $(basename $(SRC)))))
 
 # default rule

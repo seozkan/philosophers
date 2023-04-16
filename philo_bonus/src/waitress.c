@@ -3,19 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   waitress.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+        */
+/*   By: seozkan <seozkan@student.42kocaeli.com.tr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 20:58:37 by lorbke            #+#    #+#             */
-/*   Updated: 2023/01/10 20:37:22 by lorbke           ###   ########.fr       */
+/*   Updated: 2023/04/16 15:50:47 by seozkan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "waitress.h"
-#include "philo_bonus.h" // t_info, t_philo, DIE
-#include <pthread.h> // pthread_mutex_lock, pthread_mutex_unlock
-#include <stdio.h> // printf
-#include <stdlib.h> // exit
-#include <fcntl.h> // sem_open flags
+#include "../includes/philo_bonus.h"
 
 static bool	check_death_all(void)
 {

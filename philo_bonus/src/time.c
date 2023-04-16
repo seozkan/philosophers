@@ -3,17 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   time.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+        */
+/*   By: seozkan <seozkan@student.42kocaeli.com.tr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 19:07:45 by lorbke            #+#    #+#             */
-/*   Updated: 2023/01/10 00:38:42 by lorbke           ###   ########.fr       */
+/*   Updated: 2023/04/16 15:49:59 by seozkan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo_time.h"
-#include <sys/time.h> // gettimeofday
-#include <unistd.h> // usleep
-#include <stddef.h> // NULL
+#include "../includes/philo_bonus.h"
+
 
 t_ms	get_time(void)
 {

@@ -3,26 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+        */
+/*   By: seozkan <seozkan@student.42kocaeli.com.tr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 18:19:44 by lorbke            #+#    #+#             */
-/*   Updated: 2023/01/10 00:21:01 by lorbke           ###   ########.fr       */
+/*   Updated: 2023/04/16 15:51:49 by seozkan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_lib.h"
-#include "philo_bonus.h"
-#include "waitress.h"
-#include "philo_time.h"
-#include <unistd.h> // write
-#include <stdlib.h> // malloc
-#include <pthread.h> // pthread functions and types
-#include <stdio.h> // printf
-#include <fcntl.h> // sem_open flags
-#include <signal.h> // terminate signal
-#include <sys/wait.h> // waitpid
-
-int			parse(int argc, char **argv, t_info *info);
+#include "../includes/philo_bonus.h"
 
 static void	clean_up(t_philo *philos)
 {
@@ -101,8 +89,9 @@ int	main(int argc, char **argv)
 	t_info			info;
 	t_philo			*philos;
 
-	if (parse(argc, argv, &info) == 1)
+	if (check_args(argc, argv))
 		return (1);
+	init_info(&info, argc, argv);
 	if (info.philo_count == 1)
 	{
 		forever_alone(&info);

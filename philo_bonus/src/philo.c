@@ -3,17 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lorbke <lorbke@student.42.fr>              +#+  +:+       +#+        */
+/*   By: seozkan <seozkan@student.42kocaeli.com.tr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 18:22:37 by lorbke            #+#    #+#             */
-/*   Updated: 2023/01/09 18:38:45 by lorbke           ###   ########.fr       */
+/*   Updated: 2023/04/16 15:49:50 by seozkan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo_bonus.h"
-#include "waitress.h"
-#include <stdio.h> // printf
-#include <stdlib.h> // exit
+#include "../includes/philo_bonus.h"
 
 static bool	check_death(void)
 {
