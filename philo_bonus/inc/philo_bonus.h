@@ -6,7 +6,7 @@
 /*   By: seozkan <seozkan@student.42kocaeli.com.tr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 16:41:03 by seozkan           #+#    #+#             */
-/*   Updated: 2023/04/16 17:09:37 by seozkan          ###   ########.fr       */
+/*   Updated: 2023/04/16 17:27:10 by seozkan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@
 /*TYPEDEFS*/
 typedef struct s_info	t_info;
 typedef struct s_philo	t_philo;
-typedef long long t_ms;
+typedef long long		t_ms;
 
 /* STRUCTS */
 struct					s_philo

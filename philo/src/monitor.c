@@ -6,7 +6,7 @@
 /*   By: seozkan <seozkan@student.42kocaeli.com.tr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 16:40:35 by seozkan           #+#    #+#             */
-/*   Updated: 2023/04/16 16:55:52 by seozkan          ###   ########.fr       */
+/*   Updated: 2023/04/16 17:19:42 by seozkan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void	kill_all_philos(t_philo *philos)
 	int	i;
 
 	i = 0;
-	while (i < philos[0].info->philo_nbr)
+	while (i < philos->info->philo_nbr)
 	{
 		pthread_mutex_lock(&philos[i].status_mutex);
 		philos[i].status = false;
@@ -56,11 +56,11 @@ static void	kill_all_philos(t_philo *philos)
 
 static void	end_dinner(t_philo *philos, int i)
 {
-	pthread_mutex_lock(&philos[0].info->print_mutex);
+	pthread_mutex_lock(&philos->info->print_mutex);
 	kill_all_philos(philos);
 	printf("%lld %d %s\n", get_time() - philos[i].info->start_time,
 		philos[i].num, DIE);
-	pthread_mutex_unlock(&philos[0].info->print_mutex);
+	pthread_mutex_unlock(&philos->info->print_mutex);
 }
 
 void	*monitor_routine(void *arg)
@@ -75,7 +75,7 @@ void	*monitor_routine(void *arg)
 		usleep(50);
 		i = 0;
 		counter = 0;
-		while (i < philos[0].info->philo_nbr)
+		while (i < philos->info->philo_nbr)
 		{
 			if (check_death(&philos[i]))
 			{
@@ -85,7 +85,7 @@ void	*monitor_routine(void *arg)
 			if (check_fed(&philos[i++]))
 				counter++;
 		}
-		if (counter == philos[0].info->philo_nbr)
+		if (counter == philos->info->philo_nbr)
 			break ;
 	}
 	return (NULL);

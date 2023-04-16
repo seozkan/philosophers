@@ -6,7 +6,7 @@
 /*   By: seozkan <seozkan@student.42kocaeli.com.tr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 16:42:49 by seozkan           #+#    #+#             */
-/*   Updated: 2023/04/16 17:07:29 by seozkan          ###   ########.fr       */
+/*   Updated: 2023/04/16 17:27:22 by seozkan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,12 @@ void	print_action(t_philo *philo, char *str)
 		sem_post(philo->info->print_sem);
 		return ;
 	}
-	printf("%lld %d %s\n", get_time() - philo->info->start_time,
-		philo->num, str);
+	printf("%lld %d %s\n", get_time() - philo->info->start_time, philo->num,
+		str);
 	sem_post(philo->info->print_sem);
 }
 
-static void make_routine(t_philo *philo)
+static void	make_routine(t_philo *philo)
 {
 	philo_take_forks(philo);
 	philo_eat(philo);
@@ -46,8 +46,8 @@ static void make_routine(t_philo *philo)
 
 static void	*philo_routine(void *arg)
 {
-	t_philo			*philo;
-	int				meals;
+	t_philo	*philo;
+	int		meals;
 
 	philo = (t_philo *)arg;
 	if (philo->num % 2 == 0)
@@ -68,9 +68,9 @@ static void	*philo_routine(void *arg)
 
 int	philo_start(t_philo *philo)
 {
-	pthread_t		waitress;
+	pthread_t	waitress;
 
-	if (pthread_create(&waitress, NULL, &monitor_routine, philo) == 1)
+	if (pthread_create(&waitress, NULL, &monitor_routine, philo))
 		return (1);
 	philo_routine(philo);
 	pthread_join(waitress, NULL);

@@ -6,7 +6,7 @@
 /*   By: seozkan <seozkan@student.42kocaeli.com.tr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 16:26:58 by seozkan           #+#    #+#             */
-/*   Updated: 2023/04/16 17:09:33 by seozkan          ###   ########.fr       */
+/*   Updated: 2023/04/16 17:26:41 by seozkan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@
 # include <limits.h>
 # include <pthread.h>
 # include <stdbool.h>
-# include <stddef.h>  
-# include <stdio.h>  
+# include <stddef.h>
+# include <stdio.h>
 # include <stdlib.h>
 # include <sys/time.h>
-# include <unistd.h> 
+# include <unistd.h>
 
 /*DEFINES*/
 # define THINK "is thinking"
@@ -34,7 +34,7 @@
 /*TYPEDEFS*/
 typedef struct s_info	t_info;
 typedef struct s_philo	t_philo;
-typedef long long t_ms;
+typedef long long		t_ms;
 
 /*STRUCTS*/
 struct					s_philo

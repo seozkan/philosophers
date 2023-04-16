@@ -6,7 +6,7 @@
 /*   By: seozkan <seozkan@student.42kocaeli.com.tr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 16:42:40 by seozkan           #+#    #+#             */
-/*   Updated: 2023/04/16 17:05:41 by seozkan          ###   ########.fr       */
+/*   Updated: 2023/04/16 17:22:01 by seozkan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	create_philos(t_philo *philos)
 	int			i;
 
 	i = 0;
-	while (i < philos[0].info->philo_nbr)
+	while (i < philos->info->philo_nbr)
 	{
 		philos[i].pid = fork();
 		if (philos[i].pid == 0)
@@ -97,7 +97,7 @@ int	main(int argc, char **argv)
 	if (!philos)
 		return (1);
 	init_philos(&info, philos);
-	if (create_philos(philos) == 1)
+	if (create_philos(philos))
 		return (1);
 	clean_up(philos);
 	return (0);

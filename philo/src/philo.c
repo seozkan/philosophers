@@ -6,7 +6,7 @@
 /*   By: seozkan <seozkan@student.42kocaeli.com.tr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 16:40:17 by seozkan           #+#    #+#             */
-/*   Updated: 2023/04/16 17:04:20 by seozkan          ###   ########.fr       */
+/*   Updated: 2023/04/16 17:27:00 by seozkan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ void	print_action(t_philo *philo, char *str)
 	pthread_mutex_lock(&philo->info->print_mutex);
 	if (!check_death(philo))
 	{
-		printf("%lld %d %s\n", get_time() - philo->info->start_time,
-			philo->num, str);
+		printf("%lld %d %s\n", get_time() - philo->info->start_time, philo->num,
+			str);
 		pthread_mutex_unlock(&philo->info->print_mutex);
 	}
 	else
@@ -44,7 +44,7 @@ static void	set_fed(t_philo *philo)
 	pthread_mutex_unlock(&philo->fed_mutex);
 }
 
-static void make_routine(t_philo *philo)
+static void	make_routine(t_philo *philo)
 {
 	philo_take_forks(philo);
 	philo_eat(philo);
@@ -54,8 +54,8 @@ static void make_routine(t_philo *philo)
 
 void	*philo_routine(void *arg)
 {
-	t_philo			*philo;
-	int				meals;
+	t_philo	*philo;
+	int		meals;
 
 	philo = (t_philo *)arg;
 	if (philo->num % 2 == 0)

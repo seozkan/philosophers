@@ -6,7 +6,7 @@
 /*   By: seozkan <seozkan@student.42kocaeli.com.tr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 16:40:06 by seozkan           #+#    #+#             */
-/*   Updated: 2023/04/16 17:04:29 by seozkan          ###   ########.fr       */
+/*   Updated: 2023/04/16 17:26:46 by seozkan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,14 @@
 static int	create_philos(t_philo *philos)
 {
 	int	i;
-	int	error;
 
 	i = 0;
-	error = 0;
 	while (i < philos[0].info->philo_nbr)
 	{
-		error += pthread_create(&philos[i].thread, NULL, &philo_routine,
-				&philos[i]);
+		if (pthread_create(&philos[i].thread, NULL, &philo_routine, &philos[i]))
+			return (1);
 		i++;
 	}
-	if (error)
-		return (1);
 	return (0);
 }
 

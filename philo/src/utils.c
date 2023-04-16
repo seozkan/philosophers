@@ -6,7 +6,7 @@
 /*   By: seozkan <seozkan@student.42kocaeli.com.tr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 16:40:25 by seozkan           #+#    #+#             */
-/*   Updated: 2023/04/16 16:57:44 by seozkan          ###   ########.fr       */
+/*   Updated: 2023/04/16 17:27:05 by seozkan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ void	clean_up(pthread_t *waiter, t_philo *philos)
 
 int	ft_atoi(const char *str)
 {
-	int num;
-	int i;
+	int	num;
+	int	i;
 
 	i = 0;
 	num = 0;
@@ -52,7 +52,7 @@ int	ft_atoi(const char *str)
 int	check_args(int argc, char **argv)
 {
 	int	i;
-	int j;
+	int	j;
 
 	if (argc < 5 || argc > 6)
 	{
@@ -69,7 +69,7 @@ int	check_args(int argc, char **argv)
 			{
 				printf("Error: Parameters must be positive numbers only\n");
 				return (1);
-			}	
+			}
 			i++;
 		}
 		j++;
