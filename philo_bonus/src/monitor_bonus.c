@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   monitor.c                                          :+:      :+:    :+:   */
+/*   monitor_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seozkan <seozkan@student.42kocaeli.com.tr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 16:43:01 by seozkan           #+#    #+#             */
-/*   Updated: 2023/04/16 18:41:18 by seozkan          ###   ########.fr       */
+/*   Updated: 2023/04/16 21:01:15 by seozkan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/philo_bonus.h"
 
-static bool	check_death_all(void)
+bool	check_death_all(void)
 {
 	sem_t	*status;
 

@@ -6,7 +6,7 @@
 /*   By: seozkan <seozkan@student.42kocaeli.com.tr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 16:41:03 by seozkan           #+#    #+#             */
-/*   Updated: 2023/04/16 20:34:36 by seozkan          ###   ########.fr       */
+/*   Updated: 2023/04/16 21:01:39 by seozkan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ struct					s_info
 };
 
 /*PROTOTYPES*/
+bool					check_death_all(void);
 void					*monitor_routine(void *arg);
 void					philo_think(t_philo *philo);
 void					philo_eat(t_philo *philo);
