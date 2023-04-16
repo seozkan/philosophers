@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   philo_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seozkan <seozkan@student.42kocaeli.com.tr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 16:42:49 by seozkan           #+#    #+#             */
-/*   Updated: 2023/04/16 18:14:51 by seozkan          ###   ########.fr       */
+/*   Updated: 2023/04/16 19:51:31 by seozkan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ void	print_action(t_philo *philo, char *str)
 		sem_post(philo->info->print_sem);
 		return ;
 	}
-	printf("%lld %d %s\n", get_time() - philo->info->start_time, philo->id,
-		str);
+	printf("\033[0;36m%lld %d %s\n\033[0m", get_time()
+		- philo->info->start_time, philo->id, str);
 	sem_post(philo->info->print_sem);
 }
 
