@@ -6,7 +6,7 @@
 /*   By: seozkan <seozkan@student.42kocaeli.com.tr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 16:42:49 by seozkan           #+#    #+#             */
-/*   Updated: 2023/04/16 17:27:22 by seozkan          ###   ########.fr       */
+/*   Updated: 2023/04/16 18:14:51 by seozkan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	print_action(t_philo *philo, char *str)
 		sem_post(philo->info->print_sem);
 		return ;
 	}
-	printf("%lld %d %s\n", get_time() - philo->info->start_time, philo->num,
+	printf("%lld %d %s\n", get_time() - philo->info->start_time, philo->id,
 		str);
 	sem_post(philo->info->print_sem);
 }
@@ -50,7 +50,7 @@ static void	*philo_routine(void *arg)
 	int		meals;
 
 	philo = (t_philo *)arg;
-	if (philo->num % 2 == 0)
+	if (philo->id % 2 == 0)
 		sensitive_usleep(philo->info->eat_time / 2);
 	meals = 0;
 	while (!check_death())

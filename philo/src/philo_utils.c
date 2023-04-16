@@ -6,7 +6,7 @@
 /*   By: seozkan <seozkan@student.42kocaeli.com.tr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 16:40:12 by seozkan           #+#    #+#             */
-/*   Updated: 2023/04/16 16:48:03 by seozkan          ###   ########.fr       */
+/*   Updated: 2023/04/16 18:18:18 by seozkan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	philo_take_forks(t_philo *philo)
 {
-	if (philo->num % 2 == 0)
+	if (philo->id % 2 == 0)
 	{
 		pthread_mutex_lock(&philo->fork_r);
 		print_action(philo, FORK);

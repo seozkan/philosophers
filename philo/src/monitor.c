@@ -6,7 +6,7 @@
 /*   By: seozkan <seozkan@student.42kocaeli.com.tr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 16:40:35 by seozkan           #+#    #+#             */
-/*   Updated: 2023/04/16 17:19:42 by seozkan          ###   ########.fr       */
+/*   Updated: 2023/04/16 18:15:35 by seozkan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static void	kill_all_philos(t_philo *philos)
 	while (i < philos->info->philo_nbr)
 	{
 		pthread_mutex_lock(&philos[i].status_mutex);
-		philos[i].status = false;
+		philos[i].is_alive = false;
 		pthread_mutex_unlock(&philos[i].status_mutex);
 		i++;
 	}
@@ -59,7 +59,7 @@ static void	end_dinner(t_philo *philos, int i)
 	pthread_mutex_lock(&philos->info->print_mutex);
 	kill_all_philos(philos);
 	printf("%lld %d %s\n", get_time() - philos[i].info->start_time,
-		philos[i].num, DIE);
+		philos[i].id, DIE);
 	pthread_mutex_unlock(&philos->info->print_mutex);
 }
 

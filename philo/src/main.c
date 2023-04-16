@@ -6,7 +6,7 @@
 /*   By: seozkan <seozkan@student.42kocaeli.com.tr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 16:40:06 by seozkan           #+#    #+#             */
-/*   Updated: 2023/04/16 17:26:46 by seozkan          ###   ########.fr       */
+/*   Updated: 2023/04/16 18:23:10 by seozkan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ static void	init_philos(t_info *info, t_philo *philos)
 	i = 0;
 	while (i < info->philo_nbr)
 	{
-		philos[i].num = i + 1;
-		philos[i].status = true;
+		philos[i].id = i + 1;
+		philos[i].is_alive = true;
 		philos[i].fed = false;
 		philos[i].info = info;
 		philos[i].last_meal = info->start_time;
@@ -47,7 +47,7 @@ static void	init_philos(t_info *info, t_philo *philos)
 	}
 }
 
-void	init_info(t_info *info, int argc, char **argv)
+static void	init_info(t_info *info, int argc, char **argv)
 {
 	info->philo_nbr = ft_atoi(argv[1]);
 	info->die_time = ft_atoi(argv[2]);
@@ -73,7 +73,7 @@ int	main(int argc, char **argv)
 {
 	t_info		info;
 	t_philo		*philos;
-	pthread_t	thread;
+	pthread_t	monitor;
 
 	if (check_args(argc, argv))
 		return (1);
@@ -87,10 +87,10 @@ int	main(int argc, char **argv)
 	if (!philos)
 		return (1);
 	init_philos(&info, philos);
-	if (pthread_create(&thread, NULL, &monitor_routine, philos))
+	if (pthread_create(&monitor, NULL, &monitor_routine, philos))
 		return (1);
 	if (create_philos(philos))
 		return (1);
-	clean_up(&thread, philos);
+	clean_up(&monitor, philos);
 	return (0);
 }

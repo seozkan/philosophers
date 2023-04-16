@@ -6,7 +6,7 @@
 /*   By: seozkan <seozkan@student.42kocaeli.com.tr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 16:41:03 by seozkan           #+#    #+#             */
-/*   Updated: 2023/04/16 17:27:10 by seozkan          ###   ########.fr       */
+/*   Updated: 2023/04/16 18:30:55 by seozkan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,10 @@
 # define PHILO_BONUS_H
 
 /*INCLUDES*/
-# include <errno.h>
 # include <fcntl.h>
-# include <limits.h>
 # include <pthread.h>
 # include <semaphore.h>
-# include <signal.h>
 # include <stdbool.h>
-# include <stddef.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <sys/time.h>
@@ -50,7 +46,7 @@ typedef long long		t_ms;
 struct					s_philo
 {
 	t_info				*info;
-	int					num;
+	int					id;
 	bool				fed;
 	t_ms				last_meal;
 	sem_t				*eat_sem;
@@ -71,17 +67,17 @@ struct					s_info
 };
 
 /*PROTOTYPES*/
-void					philo_take_forks(t_philo *philo);
-void					philo_eat(t_philo *philo);
-void					philo_sleep(t_philo *philo);
+void					*monitor_routine(void *arg);
 void					philo_think(t_philo *philo);
+void					philo_eat(t_philo *philo);
+void					philo_take_forks(t_philo *philo);
+void					philo_sleep(t_philo *philo);
 void					print_action(t_philo *philo, char *str);
 int						philo_start(t_philo *philo);
-int						ft_atoi(const char *str);
-t_ms					get_time(void);
-int						check_args(int argc, char **argv);
-int						init_info(t_info *info, int argc, char **argv);
-void					sensitive_usleep(t_ms time);
 void					clean_up(t_philo *philos);
-void					*monitor_routine(void *arg);
+int						ft_atoi(const char *str);
+int						check_args(int argc, char **argv);
+t_ms					get_time(void);
+void					sensitive_usleep(t_ms time);
+
 #endif

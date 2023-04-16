@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   waitress.c                                         :+:      :+:    :+:   */
+/*   monitor.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seozkan <seozkan@student.42kocaeli.com.tr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 16:43:01 by seozkan           #+#    #+#             */
-/*   Updated: 2023/04/16 16:55:52 by seozkan          ###   ########.fr       */
+/*   Updated: 2023/04/16 18:41:18 by seozkan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ static void	kill_all_philos(void)
 
 static void	end_dinner(t_philo *philo)
 {
-	printf("%lldms %d %s\n", get_time() - philo->info->start_time,
-		philo->num, DIE);
+	printf("%lld %d %s\n", get_time() - philo->info->start_time,
+		philo->id, DIE);
 	kill_all_philos();
 	sem_post(philo->info->print_sem);
 }

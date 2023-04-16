@@ -6,19 +6,19 @@
 /*   By: seozkan <seozkan@student.42kocaeli.com.tr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 16:40:25 by seozkan           #+#    #+#             */
-/*   Updated: 2023/04/16 17:27:05 by seozkan          ###   ########.fr       */
+/*   Updated: 2023/04/16 18:22:44 by seozkan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/philo.h"
 
-void	clean_up(pthread_t *waiter, t_philo *philos)
+void	clean_up(pthread_t *thread, t_philo *philos)
 {
 	int	i;
 
-	pthread_join(*waiter, NULL);
+	pthread_join(*thread, NULL);
 	i = 0;
-	while (i < philos[0].info->philo_nbr)
+	while (i < philos->info->philo_nbr)
 	{
 		pthread_join(philos[i].thread, NULL);
 		i++;
