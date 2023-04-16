@@ -6,7 +6,7 @@
 /*   By: seozkan <seozkan@student.42kocaeli.com.tr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 16:42:49 by seozkan           #+#    #+#             */
-/*   Updated: 2023/04/16 20:30:05 by seozkan          ###   ########.fr       */
+/*   Updated: 2023/04/16 20:33:13 by seozkan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,11 +68,11 @@ static void	*philo_routine(void *arg)
 
 int	philo_start(t_philo *philo)
 {
-	pthread_t	waitress;
+	pthread_t	monitor;
 
-	if (pthread_create(&waitress, NULL, &monitor_routine, philo))
+	if (pthread_create(&monitor, NULL, &monitor_routine, philo))
 		return (1);
 	philo_routine(philo);
-	pthread_join(waitress, NULL);
+	pthread_join(monitor, NULL);
 	return (0);
 }

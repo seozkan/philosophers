@@ -6,7 +6,7 @@
 /*   By: seozkan <seozkan@student.42kocaeli.com.tr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 16:41:03 by seozkan           #+#    #+#             */
-/*   Updated: 2023/04/16 20:28:53 by seozkan          ###   ########.fr       */
+/*   Updated: 2023/04/16 20:34:36 by seozkan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,15 @@
 # define SLEEP "is sleeping"
 # define FORK "has taken a fork"
 # define DIE "died"
+
 # define FED_SEM "fed_sem"
 # define EAT_SEM "eat_sem"
 # define PRINT_SEM "print_sem"
 # define FORKS_SEM "forks"
 # define STATUS_SEM "status_sem"
+
 # define SEM_PERMS 0600
+
 # define CYAN "\033[33;36;1m"
 # define END "\033[0;0m"
 
