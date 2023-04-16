@@ -6,7 +6,7 @@
 /*   By: seozkan <seozkan@student.42kocaeli.com.tr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 16:40:06 by seozkan           #+#    #+#             */
-/*   Updated: 2023/04/16 18:23:10 by seozkan          ###   ########.fr       */
+/*   Updated: 2023/04/16 19:17:34 by seozkan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	create_philos(t_philo *philos)
 	int	i;
 
 	i = 0;
-	while (i < philos[0].info->philo_nbr)
+	while (i < philos->info->philo_nbr)
 	{
 		if (pthread_create(&philos[i].thread, NULL, &philo_routine, &philos[i]))
 			return (1);
@@ -62,8 +62,6 @@ static void	init_info(t_info *info, int argc, char **argv)
 
 static void	philo_alone(t_info *info)
 {
-	if (!info->meal_count)
-		return ;
 	printf("%d %d %s\n", 0, 1, FORK);
 	sensitive_usleep(info->die_time);
 	printf("%lld %d %s\n", info->die_time + 1, 1, DIE);

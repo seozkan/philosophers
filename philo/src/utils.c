@@ -6,29 +6,31 @@
 /*   By: seozkan <seozkan@student.42kocaeli.com.tr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 16:40:25 by seozkan           #+#    #+#             */
-/*   Updated: 2023/04/16 18:22:44 by seozkan          ###   ########.fr       */
+/*   Updated: 2023/04/16 19:29:10 by seozkan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/philo.h"
 
-void	clean_up(pthread_t *thread, t_philo *philos)
+void	clean_up(pthread_t *monitor, t_philo *philos)
 {
 	int	i;
 
-	pthread_join(*thread, NULL);
+	pthread_join(*monitor, NULL);
 	i = 0;
 	while (i < philos->info->philo_nbr)
 	{
 		pthread_join(philos[i].thread, NULL);
 		i++;
 	}
-	while (--i >= 0)
+	i = 0;
+	while (i < philos->info->philo_nbr)
 	{
 		pthread_mutex_destroy(&philos[i].fork_r);
 		pthread_mutex_destroy(&philos[i].status_mutex);
 		pthread_mutex_destroy(&philos[i].eat_mutex);
 		pthread_mutex_destroy(&philos[i].fed_mutex);
+		i++;
 	}
 	pthread_mutex_destroy(&philos[0].info->print_mutex);
 	free(philos);

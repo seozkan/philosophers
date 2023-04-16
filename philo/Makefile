@@ -6,7 +6,7 @@
 #    By: seozkan <seozkan@student.42kocaeli.com.tr> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/16 16:40:42 by seozkan           #+#    #+#              #
-#    Updated: 2023/04/16 19:04:18 by seozkan          ###   ########.fr        #
+#    Updated: 2023/04/16 19:46:12 by seozkan          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,16 +32,18 @@ default: makedir all
 
 ${NAME}: ${OBJ}
 	${CC} ${FLAGS} ${ADD_FLAGS} ${OBJ} -o ${NAME}
-	@echo "$(YELLOW)${NAME} ✔️"
-	@echo "$(CYAN)Mandatory files compiled successfully by seozkan✔️$(END)"
-	@sleep 1
 	@clear
-	@sleep 1
-	@echo "$(CYAN)--> seozkan <--$(END)"
+	@sleep 0.25
+	@echo "$(CYAN)${NAME} ✔️"
+	@echo "$(YELLOW)Mandatory files compiled successfully ✔️$(END)"
+	@echo "$(CYAN)by seozkan ✔️$(END)"
 	
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
 	${CC} ${FLAGS} ${ADD_FLAGS} -I $(INC_PATH) -c $< -o $@
+	@clear
+	@echo "$(YELLOW)$@ build$(CYAN) ✔️"
+	@sleep 0.1
 
 all: ${NAME}
 
