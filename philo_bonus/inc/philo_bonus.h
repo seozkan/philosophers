@@ -6,7 +6,7 @@
 /*   By: seozkan <seozkan@student.42kocaeli.com.tr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 18:23:47 by lorbke            #+#    #+#             */
-/*   Updated: 2023/04/16 16:13:49 by seozkan          ###   ########.fr       */
+/*   Updated: 2023/04/16 16:24:51 by seozkan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,6 @@
 # include <sys/wait.h> // waitpid
 # include <unistd.h>   // write
 
-typedef long long t_ms; // milliseconds
-typedef long long t_us; // microseconds
-
 /* DEFINES */
 # define ACTION_COUNT 4
 # define THINK "is thinking"
@@ -49,6 +46,7 @@ typedef long long t_us; // microseconds
 typedef struct s_info	t_info;
 typedef struct s_philo	t_philo;
 typedef void			(*t_func_action)(t_philo *philo);
+typedef long long t_ms; // milliseconds
 
 /* STRUCTS */
 struct					s_philo

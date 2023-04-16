@@ -6,7 +6,7 @@
 /*   By: seozkan <seozkan@student.42kocaeli.com.tr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 15:05:29 by lorbke            #+#    #+#             */
-/*   Updated: 2023/04/16 16:11:44 by seozkan          ###   ########.fr       */
+/*   Updated: 2023/04/16 16:25:11 by seozkan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ t_ms	get_time(void)
 	return ((time.tv_usec / 1000 + time.tv_sec * 1000));
 }
 
-void	sniper_usleep(t_us time)
+void	sniper_usleep(t_ms time)
 {
 	t_ms	wake_up;
 

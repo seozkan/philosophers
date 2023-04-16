@@ -6,7 +6,7 @@
 /*   By: seozkan <seozkan@student.42kocaeli.com.tr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 18:23:47 by lorbke            #+#    #+#             */
-/*   Updated: 2023/04/16 16:10:53 by seozkan          ###   ########.fr       */
+/*   Updated: 2023/04/16 16:25:11 by seozkan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,6 @@
 # include <sys/time.h>
 # include <unistd.h> // write// malloc
 
-typedef long long t_ms; // milliseconds
-typedef long long t_us; // microseconds
-
 /* DEFINES */
 # define ACTION_COUNT 4
 # define THINK "is thinking"
@@ -40,6 +37,7 @@ typedef long long t_us; // microseconds
 typedef struct s_info	t_info;
 typedef struct s_philo	t_philo;
 typedef void			(*t_func_action)(t_philo *philo);
+typedef long long t_ms; // milliseconds
 
 /* STRUCTS */
 struct					s_philo
@@ -84,7 +82,7 @@ void					init_info(t_info *info, int argc, char **argv);
 int						ft_atoi(const char *str);
 
 t_ms					get_time(void);
-void					sniper_usleep(t_us time);
+void					sniper_usleep(t_ms time);
 
 void					*waitress_routine(void *arg);
 void					clean_up(pthread_t *waiter, t_philo *philos);
