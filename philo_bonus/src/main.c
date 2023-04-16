@@ -6,7 +6,7 @@
 /*   By: seozkan <seozkan@student.42kocaeli.com.tr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 16:42:40 by seozkan           #+#    #+#             */
-/*   Updated: 2023/04/16 16:57:56 by seozkan          ###   ########.fr       */
+/*   Updated: 2023/04/16 17:05:41 by seozkan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,6 @@ int	init_info(t_info *info, int argc, char **argv)
 	sem_unlink(PRINT_SEM);
 	info->print_sem = sem_open(PRINT_SEM, O_CREAT, SEM_PERMS, 1);
 	sem_unlink(STATUS_SEM);
-	info->func_action[0] = &philo_take_forks;
-	info->func_action[1] = &philo_eat;
-	info->func_action[2] = &philo_sleep;
-	info->func_action[3] = &philo_think;
 	info->start_time = get_time();
 	return (0);
 }

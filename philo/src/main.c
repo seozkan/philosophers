@@ -6,7 +6,7 @@
 /*   By: seozkan <seozkan@student.42kocaeli.com.tr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 16:40:06 by seozkan           #+#    #+#             */
-/*   Updated: 2023/04/16 16:57:36 by seozkan          ###   ########.fr       */
+/*   Updated: 2023/04/16 17:04:29 by seozkan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,6 @@ void	init_info(t_info *info, int argc, char **argv)
 	if (argc == 6)
 		info->meal_count = ft_atoi(argv[5]);
 	pthread_mutex_init(&info->print_mutex, NULL);
-	info->func_action[0] = &philo_take_forks;
-	info->func_action[1] = &philo_eat;
-	info->func_action[2] = &philo_sleep;
-	info->func_action[3] = &philo_think;
 	info->start_time = get_time();
 }
 

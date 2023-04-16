@@ -6,7 +6,7 @@
 /*   By: seozkan <seozkan@student.42kocaeli.com.tr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 16:40:17 by seozkan           #+#    #+#             */
-/*   Updated: 2023/04/16 16:48:03 by seozkan          ###   ########.fr       */
+/*   Updated: 2023/04/16 17:04:20 by seozkan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,17 @@ static void	set_fed(t_philo *philo)
 	pthread_mutex_unlock(&philo->fed_mutex);
 }
 
+static void make_routine(t_philo *philo)
+{
+	philo_take_forks(philo);
+	philo_eat(philo);
+	philo_sleep(philo);
+	philo_think(philo);
+}
+
 void	*philo_routine(void *arg)
 {
 	t_philo			*philo;
-	int				i;
 	int				meals;
 
 	philo = (t_philo *)arg;
@@ -58,12 +65,7 @@ void	*philo_routine(void *arg)
 	{
 		if (philo->info->meal_count != -1 && meals == philo->info->meal_count)
 			break ;
-		i = 0;
-		while (i < ACTION_COUNT)
-		{
-			philo->info->func_action[i](philo);
-			i++;
-		}
+		make_routine(philo);
 		meals++;
 	}
 	set_fed(philo);

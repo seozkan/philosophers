@@ -6,7 +6,7 @@
 /*   By: seozkan <seozkan@student.42kocaeli.com.tr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 16:42:49 by seozkan           #+#    #+#             */
-/*   Updated: 2023/04/16 16:48:03 by seozkan          ###   ########.fr       */
+/*   Updated: 2023/04/16 17:07:29 by seozkan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,17 @@ void	print_action(t_philo *philo, char *str)
 	sem_post(philo->info->print_sem);
 }
 
+static void make_routine(t_philo *philo)
+{
+	philo_take_forks(philo);
+	philo_eat(philo);
+	philo_sleep(philo);
+	philo_think(philo);
+}
+
 static void	*philo_routine(void *arg)
 {
 	t_philo			*philo;
-	int				i;
 	int				meals;
 
 	philo = (t_philo *)arg;
@@ -50,12 +57,7 @@ static void	*philo_routine(void *arg)
 	{
 		if (philo->info->meal_count != -1 && meals == philo->info->meal_count)
 			break ;
-		i = 0;
-		while (i < ACTION_COUNT)
-		{
-			philo->info->func_action[i](philo);
-			i++;
-		}
+		make_routine(philo);
 		meals++;
 	}
 	sem_wait(philo->fed_sem);

@@ -6,7 +6,7 @@
 /*   By: seozkan <seozkan@student.42kocaeli.com.tr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 16:26:58 by seozkan           #+#    #+#             */
-/*   Updated: 2023/04/16 16:55:52 by seozkan          ###   ########.fr       */
+/*   Updated: 2023/04/16 17:04:51 by seozkan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@
 # include <unistd.h> 
 
 /*DEFINES*/
-# define ACTION_COUNT 4
 # define THINK "is thinking"
 # define EAT "is eating"
 # define SLEEP "is sleeping"
@@ -63,7 +62,6 @@ struct					s_info
 	int					meal_count;
 	t_ms				start_time;
 	pthread_mutex_t		print_mutex;
-	t_func_action		func_action[ACTION_COUNT];
 };
 
 /* PROTOTYPES */
