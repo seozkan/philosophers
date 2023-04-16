@@ -5,27 +5,26 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: seozkan <seozkan@student.42kocaeli.com.tr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/02 18:23:47 by lorbke            #+#    #+#             */
-/*   Updated: 2023/04/16 16:25:11 by seozkan          ###   ########.fr       */
+/*   Created: 2023/04/16 16:26:58 by seozkan           #+#    #+#             */
+/*   Updated: 2023/04/16 16:42:11 by seozkan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
 
-/* inc */
+/*INCLUDES*/
 # include <errno.h>
 # include <limits.h>
-# include <pthread.h> // pthread_t, pthread_mutex_t
-# include <stdbool.h> // bool
-# include <stddef.h>  // size_t
-# include <stddef.h>  // NULL
-# include <stdio.h>   // printf
+# include <pthread.h>
+# include <stdbool.h>
+# include <stddef.h>  
+# include <stdio.h>  
 # include <stdlib.h>
 # include <sys/time.h>
-# include <unistd.h> // write// malloc
+# include <unistd.h> 
 
-/* DEFINES */
+/*DEFINES*/
 # define ACTION_COUNT 4
 # define THINK "is thinking"
 # define EAT "is eating"
@@ -33,13 +32,13 @@
 # define FORK "has taken a fork"
 # define DIE "died"
 
-/* TYPEDEFS */
+/*TYPEDEFS*/
 typedef struct s_info	t_info;
 typedef struct s_philo	t_philo;
 typedef void			(*t_func_action)(t_philo *philo);
-typedef long long t_ms; // milliseconds
+typedef long long t_ms;
 
-/* STRUCTS */
+/*STRUCTS*/
 struct					s_philo
 {
 	t_info				*info;
@@ -74,17 +73,11 @@ void					philo_sleep(t_philo *philo);
 void					philo_think(t_philo *philo);
 void					print_action(t_philo *philo, char *str);
 void					*philo_routine(void *arg);
-
-/* LIBFT*/
-
 int						check_args(int argc, char **argv);
 void					init_info(t_info *info, int argc, char **argv);
 int						ft_atoi(const char *str);
-
 t_ms					get_time(void);
 void					sniper_usleep(t_ms time);
-
 void					*waitress_routine(void *arg);
 void					clean_up(pthread_t *waiter, t_philo *philos);
-
 #endif

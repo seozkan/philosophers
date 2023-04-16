@@ -5,30 +5,30 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: seozkan <seozkan@student.42kocaeli.com.tr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/02 18:23:47 by lorbke            #+#    #+#             */
-/*   Updated: 2023/04/16 16:24:51 by seozkan          ###   ########.fr       */
+/*   Created: 2023/04/16 16:41:03 by seozkan           #+#    #+#             */
+/*   Updated: 2023/04/16 16:41:56 by seozkan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_BONUS_H
 # define PHILO_BONUS_H
 
-/* inc */
+/*INCLUDES*/
 # include <errno.h>
-# include <fcntl.h> // sem_open flags
+# include <fcntl.h>
 # include <limits.h>
-# include <pthread.h>   // pthread_t, pthread_mutex_t
-# include <semaphore.h> // sem_t
-# include <signal.h>    // terminate signal
-# include <stdbool.h>   // bool
-# include <stddef.h>    // size_t
-# include <stdio.h>     // printf
+# include <pthread.h>
+# include <semaphore.h>
+# include <signal.h>
+# include <stdbool.h>
+# include <stddef.h>
+# include <stdio.h>
 # include <stdlib.h>
 # include <sys/time.h>
-# include <sys/wait.h> // waitpid
-# include <unistd.h>   // write
+# include <sys/wait.h>
+# include <unistd.h>
 
-/* DEFINES */
+/*DEFINES*/
 # define ACTION_COUNT 4
 # define THINK "is thinking"
 # define EAT "is eating"
@@ -42,11 +42,11 @@
 # define STATUS_SEM "status_sem"
 # define SEM_PERMS 0600
 
-/* TYPEDEFS */
+/*TYPEDEFS*/
 typedef struct s_info	t_info;
 typedef struct s_philo	t_philo;
 typedef void			(*t_func_action)(t_philo *philo);
-typedef long long t_ms; // milliseconds
+typedef long long t_ms;
 
 /* STRUCTS */
 struct					s_philo
@@ -73,22 +73,18 @@ struct					s_info
 	t_func_action		func_action[ACTION_COUNT];
 };
 
-/* PROTOTYPES */
+/*PROTOTYPES*/
 void					philo_take_forks(t_philo *philo);
 void					philo_eat(t_philo *philo);
 void					philo_sleep(t_philo *philo);
 void					philo_think(t_philo *philo);
 void					print_action(t_philo *philo, char *str);
 int						philo_start(t_philo *philo);
-
 int						ft_atoi(const char *str);
-
 t_ms					get_time(void);
 int						check_args(int argc, char **argv);
-
 int						init_info(t_info *info, int argc, char **argv);
 void					sniper_usleep(t_ms time);
 void					clean_up(t_philo *philos);
-
 void					*waitress_routine(void *arg);
 #endif
