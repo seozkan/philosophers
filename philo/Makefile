@@ -6,16 +6,20 @@
 #    By: seozkan <seozkan@student.42kocaeli.com.tr> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/16 16:40:42 by seozkan           #+#    #+#              #
-#    Updated: 2023/04/16 16:47:17 by seozkan          ###   ########.fr        #
+#    Updated: 2023/04/16 19:04:18 by seozkan          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
 
-CC = gcc
-RM = rm -f
+CC = @gcc
+RM = @rm -f
 ADD_FLAGS = -pthread #-fsanitize=thread
 FLAGS = -Wall -Wextra -Werror
+
+YELLOW = \033[33;49;1m
+CYAN = \033[33;36;1m
+END = \033[0;0m
 
 INC_PATH = inc
 OBJ_PATH = obj
@@ -28,10 +32,12 @@ default: makedir all
 
 ${NAME}: ${OBJ}
 	${CC} ${FLAGS} ${ADD_FLAGS} ${OBJ} -o ${NAME}
-	@echo "make: philo success!"
+	@echo "$(YELLOW)${NAME} ✔️"
+	@echo "$(CYAN)Mandatory files compiled successfully by seozkan✔️$(END)"
 	@sleep 1
-	@make clean
 	@clear
+	@sleep 1
+	@echo "$(CYAN)--> seozkan <--$(END)"
 	
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
@@ -46,7 +52,7 @@ clean:
 	${RM} -r $(OBJ_PATH)
 
 fclean: clean
-	@${RM} ${NAME}
+	${RM} ${NAME}
 
 re: fclean makedir all
 
