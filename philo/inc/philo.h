@@ -6,7 +6,7 @@
 /*   By: seozkan <seozkan@student.42kocaeli.com.tr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 16:26:58 by seozkan           #+#    #+#             */
-/*   Updated: 2023/04/16 16:42:11 by seozkan          ###   ########.fr       */
+/*   Updated: 2023/04/16 16:55:52 by seozkan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ struct					s_philo
 
 struct					s_info
 {
-	int					philo_count;
-	t_ms				starve_time;
+	int					philo_nbr;
+	t_ms				die_time;
 	t_ms				eat_time;
 	t_ms				sleep_time;
 	int					meal_count;
@@ -77,7 +77,7 @@ int						check_args(int argc, char **argv);
 void					init_info(t_info *info, int argc, char **argv);
 int						ft_atoi(const char *str);
 t_ms					get_time(void);
-void					sniper_usleep(t_ms time);
-void					*waitress_routine(void *arg);
+void					sensitive_usleep(t_ms time);
+void					*monitor_routine(void *arg);
 void					clean_up(pthread_t *waiter, t_philo *philos);
 #endif

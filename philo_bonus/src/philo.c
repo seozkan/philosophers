@@ -6,7 +6,7 @@
 /*   By: seozkan <seozkan@student.42kocaeli.com.tr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 16:42:49 by seozkan           #+#    #+#             */
-/*   Updated: 2023/04/16 16:42:50 by seozkan          ###   ########.fr       */
+/*   Updated: 2023/04/16 16:48:03 by seozkan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static void	*philo_routine(void *arg)
 
 	philo = (t_philo *)arg;
 	if (philo->num % 2 == 0)
-		sniper_usleep(philo->info->eat_time / 2);
+		sensitive_usleep(philo->info->eat_time / 2);
 	meals = 0;
 	while (!check_death())
 	{
@@ -68,7 +68,7 @@ int	philo_start(t_philo *philo)
 {
 	pthread_t		waitress;
 
-	if (pthread_create(&waitress, NULL, &waitress_routine, philo) == 1)
+	if (pthread_create(&waitress, NULL, &monitor_routine, philo) == 1)
 		return (1);
 	philo_routine(philo);
 	pthread_join(waitress, NULL);

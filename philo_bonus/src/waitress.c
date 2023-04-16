@@ -6,7 +6,7 @@
 /*   By: seozkan <seozkan@student.42kocaeli.com.tr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 16:43:01 by seozkan           #+#    #+#             */
-/*   Updated: 2023/04/16 16:43:03 by seozkan          ###   ########.fr       */
+/*   Updated: 2023/04/16 16:55:52 by seozkan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static bool	check_death(t_philo *philo)
 	sem_wait(philo->eat_sem);
 	sem_wait(philo->fed_sem);
 	if (philo->fed == false && get_time() - philo->info->start_time
-		- philo->last_meal > philo->info->starve_time)
+		- philo->last_meal > philo->info->die_time)
 	{
 		sem_post(philo->eat_sem);
 		sem_post(philo->fed_sem);
@@ -53,7 +53,7 @@ static void	end_dinner(t_philo *philo)
 	sem_post(philo->info->print_sem);
 }
 
-void	*waitress_routine(void *arg)
+void	*monitor_routine(void *arg)
 {
 	t_philo			*philo;
 

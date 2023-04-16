@@ -6,7 +6,7 @@
 /*   By: seozkan <seozkan@student.42kocaeli.com.tr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 16:40:12 by seozkan           #+#    #+#             */
-/*   Updated: 2023/04/16 16:40:13 by seozkan          ###   ########.fr       */
+/*   Updated: 2023/04/16 16:48:03 by seozkan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	philo_eat(t_philo *philo)
 	pthread_mutex_lock(&philo->eat_mutex);
 	philo->last_meal = get_time() - philo->info->start_time;
 	pthread_mutex_unlock(&philo->eat_mutex);
-	sniper_usleep(philo->info->eat_time);
+	sensitive_usleep(philo->info->eat_time);
 	pthread_mutex_unlock(&philo->fork_r);
 	pthread_mutex_unlock(philo->fork_l);
 }
@@ -44,12 +44,12 @@ void	philo_eat(t_philo *philo)
 void	philo_sleep(t_philo *philo)
 {
 	print_action(philo, SLEEP);
-	sniper_usleep(philo->info->sleep_time);
+	sensitive_usleep(philo->info->sleep_time);
 }
 
 void	philo_think(t_philo *philo)
 {
 	print_action(philo, THINK);
-	if (philo->info->philo_count % 2 != 0)
-		sniper_usleep(philo->info->eat_time / 2);
+	if (philo->info->philo_nbr % 2 != 0)
+		sensitive_usleep(philo->info->eat_time / 2);
 }

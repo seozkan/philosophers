@@ -6,7 +6,7 @@
 /*   By: seozkan <seozkan@student.42kocaeli.com.tr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 16:40:25 by seozkan           #+#    #+#             */
-/*   Updated: 2023/04/16 16:40:26 by seozkan          ###   ########.fr       */
+/*   Updated: 2023/04/16 16:57:44 by seozkan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	clean_up(pthread_t *waiter, t_philo *philos)
 
 	pthread_join(*waiter, NULL);
 	i = 0;
-	while (i < philos[0].info->philo_count)
+	while (i < philos[0].info->philo_nbr)
 	{
 		pthread_join(philos[i].thread, NULL);
 		i++;
@@ -85,11 +85,11 @@ t_ms	get_time(void)
 	return ((time.tv_usec / 1000 + time.tv_sec * 1000));
 }
 
-void	sniper_usleep(t_ms time)
+void	sensitive_usleep(t_ms time)
 {
 	t_ms	wake_up;
 
-	wake_up = get_time() + time / 1000;
+	wake_up = get_time() + time;
 	while (get_time() < wake_up)
 		usleep(200);
 }

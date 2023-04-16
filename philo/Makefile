@@ -6,7 +6,7 @@
 #    By: seozkan <seozkan@student.42kocaeli.com.tr> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/16 16:40:42 by seozkan           #+#    #+#              #
-#    Updated: 2023/04/16 16:40:57 by seozkan          ###   ########.fr        #
+#    Updated: 2023/04/16 16:47:17 by seozkan          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ INC_PATH = inc
 OBJ_PATH = obj
 SRC_PATH = src
 
-SRC = main.c utils.c philo_utils.c philo.c waitress.c
+SRC = main.c utils.c philo_utils.c philo.c monitor.c
 OBJ = $(addprefix $(OBJ_PATH)/, $(addsuffix .o, $(notdir $(basename $(SRC)))))
 
 default: makedir all
