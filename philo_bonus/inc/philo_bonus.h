@@ -6,7 +6,7 @@
 /*   By: seozkan <seozkan@student.42kocaeli.com.tr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 16:41:03 by seozkan           #+#    #+#             */
-/*   Updated: 2023/04/16 21:01:39 by seozkan          ###   ########.fr       */
+/*   Updated: 2023/04/17 18:01:17 by seozkan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ struct					s_philo
 	t_ms				last_meal;
 	sem_t				*eat_sem;
 	sem_t				*fed_sem;
-	pid_t				pid;
 };
 
 struct					s_info
