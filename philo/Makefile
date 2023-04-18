@@ -6,7 +6,7 @@
 #    By: seozkan <seozkan@student.42kocaeli.com.tr> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/16 16:40:42 by seozkan           #+#    #+#              #
-#    Updated: 2023/04/17 18:04:24 by seozkan          ###   ########.fr        #
+#    Updated: 2023/04/18 13:28:48 by seozkan          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = philo
 
 CC = @gcc
 RM = @rm -f
-ADD_FLAGS = -pthread #-fsanitize=thread
+ADD_FLAGS = -pthread
 FLAGS = -Wall -Wextra -Werror
 
 YELLOW = \033[33;49;1m
